@@ -4,8 +4,9 @@ const router = require("express").Router();
 
 router.post("/", async (req, res) => {
   try {
-    const { email, name, score } = req.body;
-
+    const {id, email, name, score } = req.body;
+    
+    //console.log("akash")
     console.log(req.body);
 
     const user = await User.findOne({ email: email });
@@ -14,8 +15,9 @@ router.post("/", async (req, res) => {
 
     if (!user) {
       const newUser = new User({
-        email,
+        id, 
         name,
+        email,
         score,
       });
       await newUser.save();
